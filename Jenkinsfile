@@ -18,12 +18,12 @@ pipeline {
      stage('Create Docker Image') {
       steps {
         echo 'This stage will Create a Docker image'
-        sh 'docker build -t krishnabolishetti/healthcare:1.0 .'
+        sh 'docker build -t krishnabolishetti/myimage:1.0 .'
                           }
             }
    stage('Docker-Login') {
            steps {
-            withCredentials([usernamePassword(credentialsId: 'dockervamc', passwordVariable: 'docker-Login', usernameVariable: 'docker-login')]) {
+           withCredentials([usernamePassword(credentialsId: 'dockercreds', passwordVariable: 'dockerpassword', usernameVariable: 'dockerlogin')]) {
                sh 'docker login -u ${docker-login} -p ${docker-Login}'
                                    }
                         }
@@ -31,12 +31,13 @@ pipeline {
     stage('Docker Push-Image') {
       steps {
         echo 'This stage will push my new image to the dockerhub'
-        sh 'docker push krishnabolishetti/healthcare:1.0 '
+        sh 'docker krishnabolishetti/myimage:1.0 '
             }
       }
     stage('AWS-Login') {
       steps {
-        withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'Awsaccess', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+       withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'awslogin', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+
          }
       }
     }
