@@ -31,7 +31,7 @@ pipeline {
     stage('Docker Push-Image') {
       steps {
         echo 'This stage will push my new image to the dockerhub'
-        sh 'docker krishnabolishetti/myimage:1.0 '
+        sh 'docker push krishnabolishetti/myimage:1.0 '
             }
       }
     stage('AWS-Login') {
