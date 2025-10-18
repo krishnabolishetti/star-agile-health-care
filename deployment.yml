@@ -16,7 +16,7 @@ spec:
     spec:
        containers:
          - name: medicure
-           image: krishnabolishetti/myimage:1.0
+           image: krishnabolishetti/vamshi:1.0
            ports:
              - containerPort: 8082
                name: http-web-app-01
